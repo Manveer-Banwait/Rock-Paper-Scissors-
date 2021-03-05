@@ -1,0 +1,1 @@
+Clearing up Git difficulties before starting project
