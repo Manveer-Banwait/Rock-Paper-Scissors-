@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rock Paper Scissors</title>
+  <meta charset="UTF-8"/>
+</head>
+<body>
+  <script>  
+  let roundCount= 1;
+  let playerScore = 0;
+  let computerScore =0;
+play();
+function play(){
+    while (playerScore !== 5 || computerScore !== 5){
+        userChoice= playSelect();
+        console.log(userChoice)
+        cpuChoice= computerSelect();
+        console.log(cpuChoice)
+
+        if(userChoice=="paper"&& cpuChoice=="rock" || userChoice=="scissors"&& cpuChoice=="paper" ||userChoice=="rock"&& cpuChoice=="scissor"){
+            playerScore++
+        }
+        if(cpuChoice=="paper"&& userChoice=="rock" || cpuChoice=="scissors"&& userChoice=="paper" ||cpuChoice=="rock"&& userChoice=="scissor"){
+            computerScore++
+        }
+        else if (cpuChoice==userChoice){
+            console.log("tie");
+        }
+       
+    }
+    console.log("gameover")
+}
+  
+  //this function asks the user for their input 
+  function playSelect(){ 
+    let getChoice = prompt("Rock, Paper or Scissors?")
+    let playerChoice= getChoice.toLowerCase();     
+    return playerChoice;    
+  
+
+   }
+  
+  //this function randomly decides a play for the computer
+   function computerSelect(){
+       let ranNum = Math.floor(Math.random()*3)+1
+       let compChoice = "";
+       switch (ranNum){
+           case 1: compPlay= "rock";
+           break;
+           case 2: compPlay= "paper";
+           break;
+           case 3: compPlay= "scissors";  
+           break;       
+
+       }       
+       return compPlay;
+   }
+
+   
+
+
+   
+  </script>
+</body>
+</html>
