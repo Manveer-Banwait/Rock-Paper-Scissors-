@@ -7,37 +7,82 @@
 <body>
   <script>  
   let roundCount= 1;
-  let playerScore = 0;
-  let computerScore =0;
+  let playerScore = 1;
+  let computerScore =1;
 play();
 function play(){
-    while (playerScore !== 5 || computerScore !== 5){
+    while (playerScore < 6 && computerScore < 6){
         userChoice= playSelect();
-        console.log(userChoice)
+        console.log("You Played "+userChoice)
         cpuChoice= computerSelect();
-        console.log(cpuChoice)
+        console.log("Computer Played "+cpuChoice)
 
-        if(userChoice=="paper"&& cpuChoice=="rock" || userChoice=="scissors"&& cpuChoice=="paper" ||userChoice=="rock"&& cpuChoice=="scissor"){
-            playerScore++
+        if (userChoice == "rock"){
+          switch(cpuChoice){
+            case "rock": console.log("tie")
+            break;
+            case "paper": console.log("Computer points:"+computerScore++)
+            break;
+            case "scissors": console.log("Your points:"+playerScore++)
+            break;
+          }
         }
-        if(cpuChoice=="paper"&& userChoice=="rock" || cpuChoice=="scissors"&& userChoice=="paper" ||cpuChoice=="rock"&& userChoice=="scissor"){
-            computerScore++
+
+        if (userChoice== "paper"){
+          switch(cpuChoice){
+            case "rock": console.log("Your points:"+playerScore++)
+            break;
+            case "paper": console.log("tie")
+            break;
+            case "scissors": console.log("Computer points:"+computerScore++)
+            break;
+          }
+
         }
-        else if (cpuChoice==userChoice){
-            console.log("tie");
+
+        if (userChoice == "scissors"){
+          switch(cpuChoice){
+            case "rock": console.log("Computer points:"+computerScore++)
+            break;
+            case "paper": console.log("Your points:"+playerScore++)
+            break;
+            case "scissors": console.log("tie")
+            break;
+          }
+
+
         }
+      
        
     }
-    console.log("gameover")
+    if (playerScore==6||computerScore==6){
+      console.log("gameover")   
+      playAgain()   
+    }
+    
+}
+function playAgain(){
+  computerScore= computerScore-computerScore;
+     playerScore= playerScore-playerScore;
+      roundCount++
+      console.log("round "+roundCount+" FIGHT!")
+      play()
 }
   
   //this function asks the user for their input 
   function playSelect(){ 
     let getChoice = prompt("Rock, Paper or Scissors?")
-    let playerChoice= getChoice.toLowerCase();     
-    return playerChoice;    
+    if (getChoice ===null){     
+      gameEnd()     
+    }
+    let playerChoice= getChoice.toLowerCase();         
+    return playerChoice;   
+    
   
 
+   }
+   function gameEnd(){
+     console.log("You've ended the game. Refresh to play again!")
    }
   
   //this function randomly decides a play for the computer
